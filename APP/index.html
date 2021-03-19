@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Presupuesto Semanal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="index.css">
+    
+    <!--script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script-->
+    <script src="app.js"></script>    
+</head>
+<body onload="actualizarVista()">
+    <div class="container">
+        <header>
+            <h1>Gasto Semanal</h1>
+            <div class="contenido-principal contenido">
+                <div class="row">
+                    <div id="pregunta">
+                        <h2>Coloca tu Presupuesto</h2>
+                        <div id="msj_error_pregunta"></div><!--div para mostrar errores-->                        
+                        <form>
+                            <input type="number" 
+                            id="presupuestoInicial" 
+                            class="u-full-width" 
+                            placeholder="Coloca tu presupuesto" 
+                            />
+                            <input type="button" 
+                            onclick="guardarPresupuesto()" 
+                            class="button-primary u-full-width" 
+                            value="Crear Presupuesto" 
+                            />
+                        </form>
+                    </div>
+
+                    <div id="divGastos">
+                        <div class="one-half column">
+                            <div class="divCrearGasto">
+                                <form id="formGastos">
+                                    <h2>Agregar tus gastos aqui</h2>
+                                    <div id="msj_error_creargasto"></div>
+                                    <div class="campo">
+                                        <label>Nombre Gasto</label>
+                                        <input type="text" class="u-full-width" placeholder="Ej. Transporte" id="tipoGasto" />
+                                    </div>
+                                    <div class="campo">
+                                        <label>Cantidad Gasto</label>
+                                        <input type="number" class="u-full-width" placeholder="Ej. 200" id="cantidadGasto" />
+                                    </div>
+                                    <div class="campo">
+                                        <label>Fecha</label>
+                                        <input type="Date" class="u-full-width" id="fechaGasto" />
+                                    </div>
+                                    <input type="button" onclick="agregarGasto()" class="button-primary u-full-width" value="Agregar gasto">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="one-half column" id="divControlGastos">
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </header>
+    </div>
+</body>
+</html>

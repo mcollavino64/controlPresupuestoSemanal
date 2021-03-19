@@ -1,0 +1,53 @@
+/* h2{
+   font-family: 'Raleway', sans-serif; 
+   font-weight: 100;
+   color: #004e92;
+   margin-bottom: 30px;
+   font-size: 3rem!important;   
+   text-align: center;
+} */
+
+.campo{
+    margin-bottom: 2rem;
+}
+
+.error{
+    text-align: center;
+}
+
+.alert {
+    position: relative;
+    padding: .75rem .1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+ .alert-primary{
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+
+
+.alert-warning{
+    color: #856404;
+    background-color:#fff3cd;
+    border-color: #ffeeba;
+}
+
+.alert-success{
+    color: #155724;
+    background-color:#fff3cd;
+    border-color: #ffeeba;
+}
+
+
+.gastos-realizados{
+    margin-bottom: 2rem;
+    background-color: blue transparent;
+}
+
+.text-dark{
+    font-size: 1rem;
+}
