@@ -1,6 +1,11 @@
-var restante = 0;
+let restante = 0;
 
+// let indiceGasto = localStorage.length;
+
+console.log(indiceGasto)
 const guardarPresupuesto = ()=>{
+
+
     let presupuesto =parseInt(document.querySelector('#presupuestoInicial').value);
 
     if(presupuesto < 1 || isNaN(presupuesto)){
@@ -48,27 +53,36 @@ const agregarGasto=()=>{
     tipoGasto = document.querySelector('#tipoGasto').value;
     cantidad = parseInt(document.querySelector('#cantidadGasto').value);
     fechaGasto = document.querySelector('#fechaGasto').value;
+    ingresoEgreso = document.querySelector('#IngresoEgreso').value;
 
-    if(cantidad<1 || isNaN(cantidad) || tipoGasto.trim()===''){
-        mostrarError('#msj_error_creargasto','ERROR EN CAMPOS');
+
+    if(cantidad<1 || isNaN(cantidad) || tipoGasto.trim()==='' || ingresoEgreso === ''){
+        mostrarError('#msj_error_creargasto','COMPLETAR TODOS LOS CAMPOS');
         return;
     }
 
-    if(cantidad>restante){
+    console.log(restante)
+    if(cantidad>restante && ingresoEgreso=='Egreso'){
         mostrarError('#msj_error_creargasto','ERROR CANTIDAD MAYOR AL RESTANTE');
         return;
     }
 
+
     let NuevoGasto ={
+        indiceGasto,
         tipoGasto,
         cantidad,
-        fechaGasto
+        fechaGasto,
+        ingresoEgreso
     }
 
     let gastos=JSON.parse(localStorage.getItem('gastos'));
     gastos.push(NuevoGasto);
     localStorage.setItem('gastos',JSON.stringify(gastos));
 
+
+    indiceGasto+=1;
+    
     refrescarListado();
 
     document.querySelector('#formGastos').reset();
@@ -84,19 +98,28 @@ const refrescarListado=()=>{
     let totalGastos=0;
     let listadoHTML=``;
 
-    
-
     gastos.map(gasto=>{
         listadoHTML+=`<li class="list-group-item list-group-item-action list-group-item-success">
-                        <p> ${gasto.tipoGasto} <span>${gasto.fechaGasto}</span>
-                            <span class='list-group-item list-group-item-action list-group-item-secondary' > $ ${gasto.cantidad} </span> 
+                        <p> ${gasto.tipoGasto} <span>/ ${gasto.fechaGasto}</span>
+                            <span 
+                                class='list-group-item list-group-item-action list-group-item-secondary' > $ ${gasto.cantidad} - Tipo: ${gasto.ingresoEgreso}                                                              
+                                <i class="fas fa-edit icon-edit" onclick="modificarGasto(${gasto.indiceGasto})" ></i>
+                                <i class="fa fa-trash icon-delete" aria-hidden="true" onclick="eliminarGasto(${gasto.indiceGasto})"  ></i>
+                            </span>
                         </p>
                     </li>`;
-        totalGastos+=parseInt(gasto.cantidad);
+        
+        if(gasto.ingresoEgreso=='Ingreso'){
+            CantidadPresupuesto = parseInt(presupuesto) + parseInt(gasto.cantidad);
+            presupuesto=CantidadPresupuesto
+        }else{
+            totalGastos+=parseInt(gasto.cantidad);
+        }
     });
     ///   console.log("Total de gastos: " + totalGastos) ;
 
    restante = presupuesto-totalGastos;
+   presupuesto = restante;
 
    let divControlGastos=document.querySelector('#divControlGastos');
    divControlGastos.innerHTML=``;
@@ -127,6 +150,18 @@ const refrescarListado=()=>{
                                 </div>`;
 
 }
+
+const modificarGasto=(id)=>{
+
+    window.location.href = ('modificar.html?id' + '=' + id)
+
+}
+
+const eliminarGasto=(id)=>{
+    window.location.href = ('eliminar.html?id' + '=' + id)
+}
+
+
 
 const reiniciarPresupuesto=()=>{
     localStorage.clear();

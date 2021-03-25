@@ -51,3 +51,19 @@
 .text-dark{
     font-size: 1rem;
 }
+
+.agregar{
+    margin-top: 1.5em;
+}
+
+.icon-edit{
+   padding-left: 40px  !important;
+}
+
+.icon-edit:hover{
+    color: red;
+}
+
+.icon-delete:hover{
+    color:red;
+}

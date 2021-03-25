@@ -13,36 +13,19 @@
     <link rel="stylesheet" href="index.css">
     
     <!--script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script-->
-    
+        
 </head>
-<body onload="actualizarVista()">
+<body> <!-- onload="actualizarVista()"-->>
     <div class="container">
         <header>
             <h1>Gasto Semanal</h1>
             <div class="contenido-principal contenido">
                 <div class="row">
-                    <div id="pregunta">
-                        <h2>Coloca tu Presupuesto</h2>
-                        <div id="msj_error_pregunta"></div><!--div para mostrar errores-->                        
-                        <form>
-                            <input type="number" 
-                            id="presupuestoInicial" 
-                            class="u-full-width" 
-                            placeholder="Coloca tu presupuesto" 
-                            />
-                            <input type="button" 
-                            onclick="guardarPresupuesto()" 
-                            class="button-primary u-full-width" 
-                            value="Crear Presupuesto" 
-                            />
-                        </form>
-                    </div>
-
                     <div id="divGastos">
                         <div class="one-half column">
                             <div class="divCrearGasto">
                                 <form id="formGastos">
-                                    <h2>Agregar tus gastos aqui</h2>
+                                    <h2>Eliminar Gasto</h2>
                                     <div id="msj_error_creargasto"></div>
                                     <div class="campo">
                                         <label>Concepto Gasto</label>
@@ -66,14 +49,10 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <input type="button" onclick="agregarGasto()" class="button-primary u-full-width agregar" value="Agregar gasto">
+                                        <input type="button"  class="button-primary u-full-width agregar" value="Eliminar" id='btnEliminar'>
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                        <div class="one-half column" id="divControlGastos">
-
-
                         </div>
 
                     </div>
@@ -82,6 +61,7 @@
             </div>
         </header>
     </div>
-    <script src="app.js"></script>    
+
+    <script src="eliminarGasto.js"></script>
 </body>
 </html>
